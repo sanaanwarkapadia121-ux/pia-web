@@ -3,100 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pakistan International Airlines | Official Strategic Innovation</title>
+    <title>PIA | Great People to Fly With</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --pia-green: #004225; --pia-gold: #C5A059; }
-        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        :root { --pia-green: #004225; --pia-gold: #C5A059; --glass: rgba(255, 255, 255, 0.85); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #1e293b; overflow-x: hidden; }
+        .serif { font-family: 'Playfair Display', serif; }
         
-        /* Smooth Page Swapping */
-        .page-view { display: none; animation: fadeIn 0.6s ease-in-out forwards; }
+        /* Smooth Transitions */
+        .page-view { display: none; animation: pageIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
         .active-view { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pageIn { from { opacity: 0; transform: translateY(30px); filter: blur(10px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
 
-        /* Video Backgrounds */
-        .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(0.5); }
+        /* Modern Glassmorphism */
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        .glass-card { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 8px 32px rgba(0, 66, 37, 0.05); }
+
+        /* Video/Hero Logic */
+        .hero-wrap { position: relative; height: 90vh; overflow: hidden; display: flex; align-items: center; }
+        .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(0.65) saturate(1.1); }
         
-        /* Navigation Styling */
-        .nav-item { cursor: pointer; position: relative; transition: 0.3s; padding: 10px 0; border-bottom: 3px solid transparent; }
-        .nav-item:hover, .nav-item.active { color: var(--pia-gold); border-bottom: 3px solid var(--pia-gold); }
+        .nav-link { cursor: pointer; transition: 0.4s; font-size: 0.75rem; letter-spacing: 0.15em; font-weight: 700; text-transform: uppercase; color: var(--pia-green); opacity: 0.6; }
+        .nav-link:hover, .nav-link.active { opacity: 1; color: var(--pia-gold); }
+        .nav-link.active::after { content: ''; display: block; width: 20px; height: 2px; background: var(--pia-gold); margin-top: 4px; }
+
+        .btn-gold { background: var(--pia-gold); transition: 0.3s; box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3); }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(197, 160, 89, 0.5); filter: brightness(1.1); }
     </style>
 </head>
-<body class="bg-gray-50">
+<body>
 
-    <header class="bg-white sticky top-0 z-[100] shadow-md">
-        <div class="bg-[#002b18] text-white py-1 px-8 text-[10px] flex justify-between uppercase tracking-widest font-bold">
-            <span>Official Strategic Innovation Unit</span>
-            <span class="text-pia-gold">Great People to Fly With</span>
+    <header class="glass-nav sticky top-0 z-[100]">
+        <div class="bg-[#002b18] text-white py-1.5 px-6 md:px-12 flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
+            <span class="opacity-80">Strategic Unit: International Passenger Services</span>
+            <span class="text-[#C5A059] italic hidden sm:inline">"Great People to Fly With"</span>
         </div>
-
-        <nav class="container mx-auto px-8 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-4 cursor-pointer" onclick="showView('home')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Pakistan_International_Airlines_logo.svg/1280px-Pakistan_International_Airlines_logo.svg.png" 
-                     alt="PIA" class="h-12 md:h-16">
-                <div class="border-l-2 border-gray-200 pl-4">
-                    <h1 class="text-pia-green font-bold text-xl uppercase leading-none">Pakistan</h1>
-                    <p class="text-pia-green text-[10px] tracking-[0.2em] font-light uppercase">International Airlines</p>
+        <nav class="container mx-auto px-6 md:px-12 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="showView('home')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Pakistan_International_Airlines_logo.svg/1024px-Pakistan_International_Airlines_logo.svg.png" 
+                     alt="PIA Logo" class="h-10 md:h-12 w-auto">
+                <div class="hidden md:block border-l border-gray-200 pl-4">
+                    <h1 class="text-[#004225] font-black text-xl leading-none tracking-tight">PAKISTAN</h1>
+                    <p class="text-[#004225] text-[9px] tracking-[0.2em] font-medium opacity-70">INTERNATIONAL AIRLINES</p>
                 </div>
             </div>
 
-            <div class="hidden lg:flex space-x-10 text-pia-green font-bold text-xs uppercase tracking-[0.15em]">
-                <span onclick="showView('home')" id="link-home" class="nav-item active">Home</span>
-                <span onclick="showView('housecall')" id="link-housecall" class="nav-item">House Call™</span>
-                <span onclick="showView('dining')" id="link-dining" class="nav-item">Dining</span>
-                <span onclick="showView('reliability')" id="link-reliability" class="nav-item">Reliability</span>
+            <div class="hidden lg:flex gap-10">
+                <span onclick="showView('home')" id="l-home" class="nav-link active">Home</span>
+                <span onclick="showView('housecall')" id="l-housecall" class="nav-link">House Call™</span>
+                <span onclick="showView('dining')" id="l-dining" class="nav-link">New Menu</span>
+                <span onclick="showView('reliability')" id="l-reliability" class="nav-link">Reliability</span>
             </div>
 
-            <button class="bg-pia-gold text-white px-8 py-2 font-bold text-xs uppercase shadow-md hover:bg-pia-green transition rounded-sm">Book Now</button>
+            <button class="btn-gold text-white px-7 py-2.5 font-bold text-[11px] uppercase rounded-full">Book Flight</button>
         </nav>
     </header>
 
     <main id="home-view" class="page-view active-view">
-        <section class="relative h-[85vh] flex items-center text-center text-white">
+        <section class="hero-wrap">
             <video autoplay muted loop playsinline class="hero-video">
                 <source src="https://assets.mixkit.co/videos/preview/mixkit-flying-over-the-clouds-at-sunset-21041-large.mp4" type="video/mp4">
             </video>
-            <div class="container mx-auto px-6">
-                <h2 class="text-pia-gold text-lg font-bold tracking-[0.5em] uppercase mb-4">A New Era of Excellence</h2>
-                <h1 class="text-6xl md:text-8xl font-black italic mb-8">Redefining <br>Reliability.</h1>
-                <p class="max-w-xl mx-auto text-lg opacity-90 mb-10 border-l-4 border-pia-gold pl-6 text-left">
-                    Addressing the accountability gap. Under post-privatization management, innovating this unit is vital for restoring credibility and improving margins.
-                </p>
-                <button onclick="showView('housecall')" class="bg-pia-gold px-12 py-4 font-bold uppercase text-sm tracking-widest shadow-2xl hover:scale-105 transition">Explore House Call</button>
+            <div class="container mx-auto px-8 md:px-16 text-white">
+                <div class="max-w-3xl">
+                    <p class="text-[#C5A059] font-extrabold uppercase tracking-[0.4em] mb-4 text-sm">Post-Privatization Era</p>
+                    <h1 class="serif text-6xl md:text-8xl italic font-bold leading-tight mb-8">Elevating Every <br>Journey.</h1>
+                    <p class="text-lg md:text-xl opacity-90 font-light mb-10 leading-relaxed border-l-2 border-[#C5A059] pl-6 max-w-xl">
+                        Closing the accountability gap with 2026's premier aviation innovations. From your doorstep to the clouds.
+                    </p>
+                    <div class="flex gap-4">
+                        <button onclick="showView('housecall')" class="btn-gold px-10 py-4 font-bold uppercase text-xs tracking-widest rounded-sm">Explore Innovations</button>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <main id="housecall-view" class="page-view">
-        <section class="py-24 bg-white">
-            <div class="container mx-auto px-8 grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <span class="bg-pia-gold text-white px-4 py-1 text-[10px] font-bold uppercase tracking-widest">Innovation Pillar</span>
-                    <h2 class="text-5xl font-bold text-pia-green my-6 italic serif">PIA House Call™</h2>
-                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
-                        A value-chain extension offering flight-integrated chauffeur services. It targets "pre-airport anxiety" caused by urban traffic mismanagement in Karachi and Lahore.
+        <section class="py-24 px-6 md:px-12 bg-white">
+            <div class="container mx-auto grid lg:grid-cols-2 gap-20 items-center">
+                <div class="order-2 lg:order-1">
+                    <span class="text-[#C5A059] font-black uppercase text-[11px] tracking-widest">Innovation Unit 01</span>
+                    <h2 class="serif text-5xl md:text-6xl text-[#004225] my-6 italic">PIA House Call™</h2>
+                    <p class="text-gray-500 text-lg mb-8 leading-relaxed">
+                        Eliminating "Pre-Airport Anxiety." Our value-chain extension ensures you never miss a flight due to city traffic in Karachi or Lahore.
                     </p>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="bg-gray-50 p-6 border-b-4 border-pia-gold">
-                            <i class="fas fa-shield-alt text-pia-gold text-3xl mb-4"></i>
-                            <h4 class="font-bold text-pia-green uppercase text-xs">72% Preference</h4>
-                            <p class="text-[11px] text-gray-500 mt-2 font-light">Preferred by Business Class travelers if pickups include "Missed Flight Protection".</p>
+                    <div class="space-y-4">
+                        <div class="glass-card p-6 flex gap-6 items-center rounded-xl">
+                            <div class="bg-[#004225] text-white p-4 rounded-lg">
+                                <i class="fas fa-shield-alt text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-[#004225]">Missed Flight Protection</h4>
+                                <p class="text-xs text-gray-400 mt-1 italic">If our chauffeur is delayed, your rebooking is on us.</p>
+                            </div>
                         </div>
-                        <div class="bg-gray-50 p-6 border-b-4 border-pia-gold">
-                            <i class="fas fa-car-side text-pia-gold text-3xl mb-4"></i>
-                            <h4 class="font-bold text-pia-green uppercase text-xs">56% Willingness</h4>
-                            <p class="text-[11px] text-gray-500 mt-2 font-light">Respondents showed immediate willingness to use a PIA-verified chauffeur service.</p>
+                        <div class="glass-card p-6 flex gap-6 items-center rounded-xl">
+                            <div class="bg-[#C5A059] text-white p-4 rounded-lg">
+                                <i class="fas fa-clock text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-[#004225]">Live Sync Scheduling</h4>
+                                <p class="text-xs text-gray-400 mt-1 italic">Chauffeurs arrive based on real-time PK flight updates.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="relative">
-                    <video autoplay muted loop playsinline class="rounded shadow-2xl h-[500px] w-full object-cover">
-                        <source src="https://assets.mixkit.co/videos/preview/mixkit-night-traffic-in-a-modern-city-2675-large.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute -bottom-6 -right-6 bg-pia-green p-8 text-white shadow-2xl hidden md:block">
-                        <p class="text-xs uppercase tracking-widest">Ground Innovation</p>
-                        <p class="text-2xl font-bold italic text-pia-gold">Closing the Quality Gap</p>
+                <div class="order-1 lg:order-2">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop" 
+                             class="rounded-3xl shadow-2xl h-[600px] w-full object-cover">
+                        <div class="absolute -bottom-6 -left-6 bg-[#004225] p-10 text-white rounded-2xl shadow-2xl hidden md:block">
+                            <p class="text-4xl font-black italic text-[#C5A059]">72%</p>
+                            <p class="text-[10px] uppercase font-bold tracking-widest opacity-70">Passenger Priority</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,43 +126,43 @@
     </main>
 
     <main id="dining-view" class="page-view">
-        <section class="py-24 bg-gray-50">
-            <div class="container mx-auto px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-pia-green italic mb-4">Digital 3-Course Menu</h2>
-                    <p class="text-gray-500 max-w-2xl mx-auto">Addressing the "soggy food" reputation by introducing modernized, QR-customizable meals shifting toward personalized, fresh Pakistani cuisine.</p>
+        <section class="py-24 bg-[#f1f5f9]">
+            <div class="container mx-auto px-6 text-center mb-20">
+                <p class="text-[#C5A059] font-black uppercase text-[11px] tracking-widest mb-4">The Culinary Pivot</p>
+                <h2 class="serif text-5xl text-[#004225] italic font-bold">The Digital 3-Course Menu</h2>
+            </div>
+            
+            <div class="container mx-auto px-6 grid md:grid-cols-3 gap-10">
+                <div class="group relative overflow-hidden rounded-3xl shadow-xl bg-white">
+                    <div class="h-[450px] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1974&auto=format&fit=crop" 
+                             class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
+                        <h4 class="text-2xl font-bold serif italic mb-2">Rooh Afza Chill</h4>
+                        <p class="text-sm opacity-70 font-light">Botanical rose nectar with cold fruit infusions.</p>
+                    </div>
                 </div>
-                
-                <div class="grid md:grid-cols-3 gap-10">
-                    <div class="bg-white rounded-xl shadow-xl overflow-hidden border-b-8 border-pia-gold group">
-                        <div class="h-64 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1974&auto=format&fit=crop" 
-                                 class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                        </div>
-                        <div class="p-8 text-center">
-                            <h4 class="text-2xl font-bold text-pia-green mb-2 italic">Rooh Afza Chill</h4>
-                            <p class="text-sm text-gray-500 italic">Signature Mohabbat Ka Sharbat. Botanical rose nectar with fruit infusions.</p>
-                        </div>
+
+                <div class="group relative overflow-hidden rounded-3xl shadow-xl bg-white">
+                    <div class="h-[450px] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?q=80&w=1980&auto=format&fit=crop" 
+                             class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
                     </div>
-                    <div class="bg-white rounded-xl shadow-xl overflow-hidden border-b-8 border-pia-green group">
-                        <div class="h-64 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?q=80&w=1980" 
-                                 class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                        </div>
-                        <div class="p-8 text-center">
-                            <h4 class="text-2xl font-bold text-pia-green mb-2 italic">Tandoori Tacos</h4>
-                            <p class="text-sm text-gray-500 italic">Freshly charred Pakistani spices met with modern fusion plating.</p>
-                        </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
+                        <h4 class="text-2xl font-bold serif italic mb-2">Tandoori Tacos</h4>
+                        <p class="text-sm opacity-70 font-light">Hand-charred poultry or paneer with fresh salsa fusion.</p>
                     </div>
-                    <div class="bg-white rounded-xl shadow-xl overflow-hidden border-b-8 border-pia-gold group">
-                        <div class="h-64 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1590080876351-941da357cd76?q=80&w=1887" 
-                                 class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                        </div>
-                        <div class="p-8 text-center">
-                            <h4 class="text-2xl font-bold text-pia-green mb-2 italic">Chocolate Ajwa</h4>
-                            <p class="text-sm text-gray-500 italic">Premium organic dates stuffed with almonds and dipped in dark cocoa.</p>
-                        </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-3xl shadow-xl bg-white">
+                    <div class="h-[450px] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1590080876351-941da357cd76?q=80&w=1887&auto=format&fit=crop" 
+                             class="w-full h-full object-cover transition duration-1000 group-hover:scale-110">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8 text-white">
+                        <h4 class="text-2xl font-bold serif italic mb-2">Chocolate Ajwa</h4>
+                        <p class="text-sm opacity-70 font-light">Organic dates dipped in 70% dark Belgian cocoa.</p>
                     </div>
                 </div>
             </div>
@@ -148,56 +170,62 @@
     </main>
 
     <main id="reliability-view" class="page-view">
-        <section class="py-24 bg-pia-dark text-white">
-            <div class="container mx-auto px-8 text-center">
-                <h2 class="text-4xl font-bold italic mb-12 text-pia-gold">Gap Analysis Performance</h2>
-                <div class="grid md:grid-cols-3 gap-12">
-                    <div class="p-10 border border-white/10 bg-white/5">
-                        <h3 class="text-5xl font-black text-pia-gold mb-4">50%</h3>
-                        <p class="text-xs uppercase font-bold tracking-widest text-gray-400">Operations Disapproved</p>
-                        <p class="mt-4 text-sm font-light italic">Dissatisfaction due to unannounced cancellations and poor meal quality.</p>
-                    </div>
-                    <div class="p-10 border border-white/10 bg-white/5">
-                        <h3 class="text-5xl font-black text-pia-gold mb-4">14H</h3>
-                        <p class="text-xs uppercase font-bold tracking-widest text-gray-400">Delay Crisis</p>
-                        <p class="mt-4 text-sm font-light italic">Repeated flights in 2025 exceeding 14-hour delays eroded trust.</p>
-                    </div>
-                    <div class="p-10 border border-white/10 bg-white/5">
-                        <h3 class="text-5xl font-black text-pia-gold mb-4">100%</h3>
-                        <p class="text-xs uppercase font-bold tracking-widest text-gray-400">Accountability</p>
-                        <p class="mt-4 text-sm font-light italic">Closing the gap between operational performance and traveler experience.</p>
+        <section class="py-32 bg-[#004225] text-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="serif text-5xl md:text-6xl italic mb-16">Closing the Reality Gap.</h2>
+                    <div class="grid md:grid-cols-3 gap-12">
+                        <div class="p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-md">
+                            <h3 class="text-5xl font-black text-[#C5A059] mb-4">50%</h3>
+                            <p class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">Ops Disapproval</p>
+                            <p class="mt-6 text-sm font-light opacity-80 leading-relaxed italic">Addressing 2025's meal quality and cancellation dissatisfaction.</p>
+                        </div>
+                        <div class="p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-md">
+                            <h3 class="text-5xl font-black text-[#C5A059] mb-4">14H</h3>
+                            <p class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">Delay Crisis</p>
+                            <p class="mt-6 text-sm font-light opacity-80 leading-relaxed italic">Strategic goal: 0% recurrence of 14-hour delays by Q3 2026.</p>
+                        </div>
+                        <div class="p-8 border border-white/10 rounded-2xl bg-white/5 backdrop-blur-md">
+                            <h3 class="text-5xl font-black text-[#C5A059] mb-4">100%</h3>
+                            <p class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">Accountability</p>
+                            <p class="mt-6 text-sm font-light opacity-80 leading-relaxed italic">Integrated ground-to-air tracking for every ticketed passenger.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-white py-12 border-t text-center">
-        <div class="flex flex-col items-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Pakistan_International_Airlines_logo.svg/1280px-Pakistan_International_Airlines_logo.svg.png" 
-                 class="h-10 mb-6 grayscale opacity-60">
-            <p class="text-pia-green font-bold text-lg italic serif mb-2">Great People to Fly With</p>
-            <p class="text-[9px] text-gray-400 uppercase tracking-widest">Strategic Case Study | Based on International Passenger Services Unit</p>
+    <footer class="bg-white py-20 px-6 border-t border-gray-100">
+        <div class="container mx-auto text-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Pakistan_International_Airlines_logo.svg/1024px-Pakistan_International_Airlines_logo.svg.png" 
+                 class="h-8 mx-auto mb-8 opacity-40 grayscale">
+            <div class="flex justify-center gap-8 mb-10 text-[11px] font-bold uppercase tracking-widest text-gray-400">
+                <a href="#" class="hover:text-[#004225]">Careers</a>
+                <a href="#" class="hover:text-[#004225]">Privacy</a>
+                <a href="#" class="hover:text-[#004225]">Fleet</a>
+                <a href="#" class="hover:text-[#004225]">Press</a>
+            </div>
+            <p class="text-[10px] text-gray-400 uppercase tracking-[0.3em]">© 2026 Pakistan International Airlines | Strategic Rebrand Initiative</p>
         </div>
     </footer>
 
     <script>
-        function showView(viewName) {
-            // Hide all pages
+        function showView(viewId) {
+            // Hide all views
             const views = ['home', 'housecall', 'dining', 'reliability'];
             views.forEach(v => {
                 document.getElementById(v + '-view').classList.remove('active-view');
-                document.getElementById('link-' + v).classList.remove('active');
+                document.getElementById('l-' + v).classList.remove('active');
             });
 
-            // Show active page
-            document.getElementById(viewName + '-view').classList.add('active-view');
-            document.getElementById('link-' + viewName).classList.add('active');
+            // Show active
+            document.getElementById(viewId + '-view').classList.add('active-view');
+            document.getElementById('l-' + viewId).classList.add('active');
 
-            // Scroll to top
+            // Reset scroll
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
-
 </body>
 </html>
